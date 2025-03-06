@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sana'y mapagbigyan</title>
+    <style>
+        body {
+            font-family: 'MS Sans Serif', Tahoma, Geneva, sans-serif;
+            background-color: #c3c7cb;
+            color: black;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .window {
+            background-color: #ffffff;
+            border: 2px solid #000000;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 4px 4px 0px #7a7a7a;
+            margin-bottom: 20px;
+        }
+        .title-bar {
+            background-color: #000080;
+            color: white;
+            padding: 5px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+        .title-bar button {
+            background-color: #c3c7cb;
+            border: 1px solid #7a7a7a;
+            width: 16px;
+            height: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 14px;
+        }
+        .title-bar button:hover {
+            background-color: #ff0000;
+            color: white;
+        }
+        .content {
+            padding: 15px;
+            font-size: 14px;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 10px;
+        }
+        button {
+            background-color: #c3c7cb;
+            border: 2px solid #000000;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button:hover {
+            background-color: #a1a1a1;
+        }
+        .letter-part {
+            display: none;
+            margin-top: 15px;
+            background: #e4e4e4;
+            padding: 10px;
+            border: 1px solid #7a7a7a;
+            box-shadow: inset 2px 2px #ffffff, inset -2px -2px #7a7a7a;
+        }
+        iframe {
+            margin-top: 10px;
+            border: none;
+            width: 100%;
+            max-width: 600px;
+            height: 80px;
+            border-radius: 8px;
+        }
+        .spotify-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="window">
+        <div class="title-bar">
+            <span>mybebe.exe</span>
+            <button title="Close">✕</button>
+        </div>
+        <div class="content">
+            <p><strong>alert! your heart has been infected by... me!</strong></p>
+            <p>click at your own risk! </p>
+
+            <div class="button-container">
+                <button onclick="showPart()">Open</button>
+                <div id="letter-part" class="letter-part">
+                    <p>to my dearest,</p>
+                    <p>i'm not perfect, nor am i probably the best person you could've find to love. but i feel for you too much to not take this seriously. i never expected to feel so cared for and loved like this so most times, i don't know how to respond to it. its hard to learn and get used to accepting such care, so i'm doing my best to reciprocate everything you give me because you deserve that and more. i'm still treading carefully with whatever we have because i'm afraid of a lot of things but you make me want to take risks again, and how could i ever turn down a gamble with you? </p>
+                    <p>will you PLS officially be my gf so i can say i love you without hesitations? (and so that you can't escape) XD</p>
+                    <div id="response-buttons">
+                        <button onclick="handleResponse('yes')">Yes</button>
+                        <button onclick="handleResponse('no')">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Spotify Embed -->
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2Dhdu4YB3y5U3RiIcCJduv?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+
+    <script>
+        function showPart() {
+            const part = document.getElementById("letter-part");
+            if (part) {
+                part.style.display = "block";
+            }
+        }
+
+        function handleResponse(answer) {
+            const responseButtons = document.getElementById("response-buttons");
+            const letterPart = document.getElementById("letter-part");
+
+            if (answer === 'yes') {
+                letterPart.innerHTML = `<p>DAPAT LANG! ako na to eh! ems, i love you!</p>`;
+                responseButtons.style.display = "none"; // Hide the buttons after "Yes"
+            } else {
+                const newMessage = [
+                    "are you sure you did not misclick, you can always try again hehe",
+                    "bebe... are you sure...",
+                    "one more time, you choosing no has to be a technical issue",
+                    "i will CRY if you say no again",
+                    "WHY SAY NO?!",
+                    "ah cge, cnu b nmn aq para piliin mo huehuehue",
+                    "the correct answer is only yes, actually",
+                    "i knew i shouldn't have placed an option to say no",
+                    "i know where you live >:(",
+                    "error: choose yes if you don't want to break my heart este the system"
+                ];
+                const randomMessage = newMessage[Math.floor(Math.random() * newMessage.length)];
+                letterPart.innerHTML = `<p>${randomMessage}</p>`;
+
+                // Add the Yes/No buttons again after the response
+                setTimeout(function() {
+                    // Append only the buttons, without replacing the whole content
+                    letterPart.innerHTML += `<div id="response-buttons">
+                        <button onclick="handleResponse('yes')">Yes</button>
+                        <button onclick="handleResponse('no')">No</button>
+                    </div>`;
+                }, 500); // Adding buttons after a short delay to make it funnier
+            }
+        }
+    </script>
+</body>
+</html>
